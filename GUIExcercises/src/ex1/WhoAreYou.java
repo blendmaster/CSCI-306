@@ -1,8 +1,10 @@
 package ex1;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -11,59 +13,70 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import quickex3.OptionPanel;
 
-public final class WhoAreYou extends JFrame implements ActionListener,StatusListener {
+public final class WhoAreYou extends JFrame implements StatusListener {
 	
 	private static final long serialVersionUID = 5160490348130252527L;
 	private JMenu menu;
 	private JMenuItem close;
 	private JLabel statusbar;
 	
+	@SuppressWarnings("serial")
 	WhoAreYou() {
 		super("Who Are You?");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		Container content = getContentPane();
+		
 		this.menu = new JMenu("Program");
 		this.close = new JMenuItem("Exit");
-		this.close.addActionListener(this);
+		this.close.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+			}
+		});
 		this.menu.add( close );
 
 		this.setJMenuBar(new JMenuBar());
 		this.getJMenuBar().add(this.menu);
 		
-		add(new OptionPanel("Do you like",
-				               new String[] {"Bunnies","Kittens", "Puppies", "Pandas"},
-				               new String[] {"Bunnies are still underground, so you're cool","Kittens are great", "Puppies sold out years ago","E'rybody likes pandas"},
-				               this,
-				               true));
-		add(new OptionPanel("Are you a",
-	               new String[] {"Freshman","Sophomore", "Junior", "Senior", "Employed", "NEET"},
-	               new String[] {"You don't know what you're in for, do you?","Stay with it dude", "3/4s is good enough for government work","E'rybody likes seniors", "Make some bank", "It's okay bro, you can always go to school later"},
-	               this,
-	               false));
+		content.add(new OptionPanel(
+				"Animals",
+				"Do you like",
+				new HashMap<String,String>() {{
+					put("Bunnies","Bunnies are still underground, so you're cool");
+					put("Kittens","Kittens are great");
+					put("Puppies","Puppies sold out years ago");
+					put("Pandas","E'rybody likes pandas");
+				}},
+				this,
+				true));
+		content.add(new OptionPanel(
+				"Power Level",
+				"Are you a",
+				new HashMap<String,String>() {{
+					put("Freshman","You don't know what you're in for, do you?");
+					put("Sophomore", "Stay with it dude");
+					put("Junior","3/4s is good enough for government work");
+					put("Senior","E'rybody likes seniors");
+					put("Employed","Make some bank");
+					put("NEET","It's okay bro, you can always go to school later");
+				}},
+				this,
+				false));
 		
 				               
 		this.statusbar = new JLabel("Ready");
 		statusbar.setBorder(BorderFactory.createLoweredBevelBorder());
-		this.add(statusbar, BorderLayout.SOUTH);
+		content.add(statusbar, BorderLayout.SOUTH);
 		
 		pack();
+		setVisible(true);
 	}
 	
 	public static void main(String[] args) {
-		WhoAreYou y = new WhoAreYou();
-		y.setVisible(true);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if( e.getSource().equals(close)) {
-			this.setVisible(false);
-			this.dispose();
-		} else {
-			statusbar.setText(e.getActionCommand());
-		}
+		new WhoAreYou();
 	}
 
 	@Override
