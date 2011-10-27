@@ -1,4 +1,4 @@
-package excercise;
+package ex1;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import quickex3.OptionPanel;
 
 public final class WhoAreYou extends JFrame implements ActionListener,StatusListener {
 	

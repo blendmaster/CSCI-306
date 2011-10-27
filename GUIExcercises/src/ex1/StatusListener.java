@@ -1,4 +1,4 @@
-package excercise;
+package ex1;
 
 public interface StatusListener {
 	void updateStatus(String message);

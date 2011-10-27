@@ -1,4 +1,4 @@
-package excercise;
+package quickex3;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+
+import ex1.StatusListener;
 
 public class OptionPanel extends JPanel implements ItemListener {
 	private static final long serialVersionUID = 187547734131707680L;

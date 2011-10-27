@@ -1,4 +1,4 @@
-package excercise;
+package quickex3;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -15,8 +15,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import excercise.PanelPlay.HometownPanel;
-import excercise.PanelPlay.MajorPanel;
+import quickex3.PanelPlay.HometownPanel;
+import quickex3.PanelPlay.MajorPanel;
+
 
 public class PanelPlay extends JFrame implements ActionListener {
 	/**
