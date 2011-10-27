@@ -16,7 +16,6 @@ import javax.swing.JToggleButton;
 public class OptionPanel extends JPanel {
 	private static final long serialVersionUID = 187547734131707680L;
 
-
 	public OptionPanel(String title, String label, Map<String,String> options, final StatusListener status, boolean allowMultipleSelections ) {
 		setBorder(BorderFactory.createTitledBorder(title));
 		
@@ -24,7 +23,6 @@ public class OptionPanel extends JPanel {
 		
 		ButtonGroup group = new ButtonGroup();
 		
-		//Iterator<String> it = Arrays.asList(messages).iterator(); //hacking around iterating through two arrays
 		for( Map.Entry<String, String> option: options.entrySet() ) {
 			JToggleButton button = allowMultipleSelections ? new JCheckBox(option.getKey()) : new JRadioButton(option.getKey());
 			final String message = option.getValue();
