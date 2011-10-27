@@ -15,9 +15,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import quickex3.PanelPlay.HometownPanel;
-import quickex3.PanelPlay.MajorPanel;
-
 
 public class PanelPlay extends JFrame implements ActionListener {
 	/**
@@ -31,6 +28,7 @@ public class PanelPlay extends JFrame implements ActionListener {
 	private HometownPanel hometown;
 
 	class MajorPanel extends JPanel {
+		private static final long serialVersionUID = -759043080167529584L;
 		private JRadioButton math;
 		private JRadioButton cs;
 		private ButtonGroup majors;
@@ -51,13 +49,14 @@ public class PanelPlay extends JFrame implements ActionListener {
 	}
 	
 	class HometownPanel extends JPanel {
+		private static final long serialVersionUID = -4305607901453451446L;
 		private JLabel townlabel;
-		private JComboBox town;
+		private JComboBox<String> town;
 
 		HometownPanel() {
 			String[] towns = {"Golden", "Longmont", "Dubai"};
 			this.townlabel = new JLabel("Home town: ");
-			this.town = new JComboBox(towns);
+			this.town = new JComboBox<String>(towns);
 			this.add(townlabel);
 			this.add(town);
 		}
