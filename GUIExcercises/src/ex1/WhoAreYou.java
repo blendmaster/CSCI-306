@@ -12,12 +12,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 
 public final class WhoAreYou extends JFrame implements StatusListener {
 	
 	private static final long serialVersionUID = 5160490348130252527L;
-	private JMenu menu;
 	private JMenuItem close;
 	private JLabel statusbar;
 	
@@ -27,10 +27,10 @@ public final class WhoAreYou extends JFrame implements StatusListener {
 		
 		setupMenu();
 		
-		JPanel options = new JPanel();
-		options.setLayout(new BoxLayout(options, BoxLayout.PAGE_AXIS));
+		JPanel metrics = new JPanel();
+		metrics.setLayout(new BoxLayout(metrics, BoxLayout.PAGE_AXIS));
 		
-		options.add(new OptionPanel(
+		metrics.add(new OptionPanel(
 				"Animals",
 				"Do you like",
 				this,
@@ -38,9 +38,8 @@ public final class WhoAreYou extends JFrame implements StatusListener {
 				new Option("Bunnies","Bunnies are still underground, so you're cool"),
 				new Option("Kittens","Kittens are great"),
 				new Option("Puppies","Puppies sold out years ago"),
-				new Option("Pandas","E'rybody likes pandas")
-				));
-		options.add(new OptionPanel(
+				new Option("Pandas","E'rybody likes pandas")));
+		metrics.add(new OptionPanel(
 				"Power Level",
 				"Are you a",
 				this,
@@ -49,10 +48,22 @@ public final class WhoAreYou extends JFrame implements StatusListener {
 				new Option("Sophomore", "Stay with it dude"),
 				new Option("Junior","3/4s is good enough for government work"),
 				new Option("Senior","E'rybody likes seniors"),
-				new Option("Employed","Make some bank"),
-				new Option("NEET","It's okay bro, you can always go to school later")
-				));
-		add(options);
+				new Option("Office Drone","Keep telling yourself it'll get better"),
+				new Option("CEO","1% represent"),
+				new Option("NEET","It's okay bro, school and jobs are for newbs")));
+		metrics.add(new InputPanel(
+				"Your Superpowers",
+				this,
+				new Option("Best", "Like lazors and bear-taming and stuff"),
+				new Option("Would settle for", "meh, x-ray vision I guess"),
+				new Option("Worst", "hair growth? pain sensitivity? you tell me, man")));
+		metrics.add(new AreaInputPanel(
+				"Origin Story",
+				"Make yourself marketable to late 2000s Hollywood producers",
+				"Ye olde origin story",
+				"Best make it good, buddy",
+				this));
+		add(metrics);
 		
 		setupStatusbar();
 		
@@ -63,13 +74,14 @@ public final class WhoAreYou extends JFrame implements StatusListener {
 	}
 
 	private void setupStatusbar() {
-		this.statusbar = new JLabel("Ready");
+		this.statusbar = new JLabel();
+		clearStatus();
 		statusbar.setBorder(BorderFactory.createLoweredBevelBorder());
 		this.getContentPane().add(statusbar, BorderLayout.PAGE_END);
 	}
 
 	private void setupMenu() {
-		this.menu = new JMenu("Program");
+		JMenu menu = new JMenu("Program");
 		this.close = new JMenuItem("Exit");
 		this.close.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,20 +89,26 @@ public final class WhoAreYou extends JFrame implements StatusListener {
 				dispose();
 			}
 		});
-		this.menu.add( close );
+		menu.add( close );
 
-		this.setJMenuBar(new JMenuBar());
-		this.getJMenuBar().add(this.menu);
+		setJMenuBar(new JMenuBar());
+		getJMenuBar().add(menu);
 	}
 	
-	public static void main(String[] args) {
-		new WhoAreYou();
-	}
-
-	@Override
 	public void updateStatus(String message) {
 		statusbar.setText(message);
-		
+	}
+
+	public void clearStatus() {
+		statusbar.setText("Let me judge you!");
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new WhoAreYou();
+			}
+		});
 	}
 
 }
