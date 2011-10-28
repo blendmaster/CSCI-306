@@ -3,7 +3,6 @@ package ex1;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedHashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -22,7 +21,6 @@ public final class WhoAreYou extends JFrame implements StatusListener {
 	private JMenuItem close;
 	private JLabel statusbar;
 	
-	@SuppressWarnings("serial")
 	WhoAreYou() {
 		super("Who Are You?");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -35,27 +33,25 @@ public final class WhoAreYou extends JFrame implements StatusListener {
 		options.add(new OptionPanel(
 				"Animals",
 				"Do you like",
-				new LinkedHashMap<String,String>() {{
-					put("Bunnies","Bunnies are still underground, so you're cool");
-					put("Kittens","Kittens are great");
-					put("Puppies","Puppies sold out years ago");
-					put("Pandas","E'rybody likes pandas");
-				}},
 				this,
-				true));
+				true,
+				new Option("Bunnies","Bunnies are still underground, so you're cool"),
+				new Option("Kittens","Kittens are great"),
+				new Option("Puppies","Puppies sold out years ago"),
+				new Option("Pandas","E'rybody likes pandas")
+				));
 		options.add(new OptionPanel(
 				"Power Level",
 				"Are you a",
-				new LinkedHashMap<String,String>() {{
-					put("Freshman","You don't know what you're in for, do you?");
-					put("Sophomore", "Stay with it dude");
-					put("Junior","3/4s is good enough for government work");
-					put("Senior","E'rybody likes seniors");
-					put("Employed","Make some bank");
-					put("NEET","It's okay bro, you can always go to school later");
-				}},
 				this,
-				false));
+				false,
+				new Option("Freshman","You don't know what you're in for, do you?"),
+				new Option("Sophomore", "Stay with it dude"),
+				new Option("Junior","3/4s is good enough for government work"),
+				new Option("Senior","E'rybody likes seniors"),
+				new Option("Employed","Make some bank"),
+				new Option("NEET","It's okay bro, you can always go to school later")
+				));
 		add(options);
 		
 		setupStatusbar();

@@ -2,7 +2,6 @@ package ex1;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -16,16 +15,16 @@ import javax.swing.JToggleButton;
 public class OptionPanel extends JPanel {
 	private static final long serialVersionUID = 187547734131707680L;
 
-	public OptionPanel(String title, String label, Map<String,String> options, final StatusListener status, boolean allowMultipleSelections ) {
+	public OptionPanel(String title, String label, final StatusListener status, boolean allowMultipleSelections, Option...options ) {
 		setBorder(BorderFactory.createTitledBorder(title));
 		
 		this.add(new JLabel(label + ": "));
 		
 		ButtonGroup group = new ButtonGroup();
 		
-		for( Map.Entry<String, String> option: options.entrySet() ) {
-			JToggleButton button = allowMultipleSelections ? new JCheckBox(option.getKey()) : new JRadioButton(option.getKey());
-			final String message = option.getValue();
+		for( Option option: options ) {
+			JToggleButton button = allowMultipleSelections ? new JCheckBox(option.text) : new JRadioButton(option.text);
+			final String message = option.message;
 			
 			button.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
