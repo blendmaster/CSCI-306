@@ -51,12 +51,12 @@ public class PanelPlay extends JFrame implements ActionListener {
 	class HometownPanel extends JPanel {
 		private static final long serialVersionUID = -4305607901453451446L;
 		private JLabel townlabel;
-		private JComboBox<String> town;
+		private JComboBox town;
 
 		HometownPanel() {
 			String[] towns = {"Golden", "Longmont", "Dubai"};
 			this.townlabel = new JLabel("Home town: ");
-			this.town = new JComboBox<String>(towns);
+			this.town = new JComboBox(towns);
 			this.add(townlabel);
 			this.add(town);
 		}
